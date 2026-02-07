@@ -3,45 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Zeenatt 🌹</title>
+<title>One Question ❤️</title>
 
-<!-- ================= CSS ================= -->
 <style>
 :root{
-  --rose-dark:#6a1b3a;
-  --rose-mid:#a8325e;
-  --rose-light:#e89ac7;
-  --gold:#f6d365;
-  --soft:#fff6fb;
+  --bg1:#14001f;
+  --bg2:#3c096c;
+  --bg3:#9d4edd;
+  --gold:#ffd86f;
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: "Poppins", sans-serif;
+  font-family:Poppins,sans-serif;
 }
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 body{
-  background:linear-gradient(135deg,var(--rose-dark),var(--rose-mid),var(--rose-light));
-  color:var(--soft);
+  color:white;
   overflow-x:hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.12), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(0,0,0,.4), transparent 40%),
+    linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
 }
 
-/* ---------- Sections ---------- */
+/* ===== sections ===== */
 section{
   min-height:100vh;
   max-width:900px;
   margin:auto;
-  padding:70px 18px;
+  padding:70px 20px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   text-align:center;
+  animation:fade 1s ease;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(25px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
 h1,h2{
@@ -49,210 +54,229 @@ h1,h2{
   margin-bottom:20px;
 }
 
-p{
-  font-size:1.05rem;
-  line-height:1.8;
+.card{
+  background:rgba(255,255,255,.10);
+  padding:20px;
+  margin:10px 0;
+  border-radius:15px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 
-/* ---------- Buttons ---------- */
-.next-btn{
-  display:inline-block;
-  margin:40px auto 0;
-  padding:14px 34px;
+/* next button */
+.next{
+  margin-top:40px;
+  padding:14px 30px;
   border-radius:30px;
   background:linear-gradient(135deg,#ffdde1,#ee9ca7);
   color:#7b1e3a;
-  font-weight:600;
+  font-weight:bold;
   text-decoration:none;
-  transition:0.3s;
+  transition:.3s;
 }
-.next-btn:hover{
-  transform:scale(1.08);
+.next:hover{transform:scale(1.1);}
+
+/* ===== slider ===== */
+.slider{
+  width:330px;
+  height:75px;
+  margin:20px auto;
+  background:rgba(255,255,255,.12);
+  border-radius:50px;
+  position:relative;
+  backdrop-filter:blur(10px);
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
 }
 
-/* ---------- Rose Button ---------- */
-.rose-btn{
-  width:130px;
-  height:130px;
+.label{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-weight:bold;
+  font-size:.9rem;
+}
+.no{left:15px;}
+.yes{right:15px;}
+
+.knob{
+  width:75px;
+  height:75px;
   border-radius:50%;
-  background:radial-gradient(circle,#ffb6c1,#c2185b);
-  margin:35px auto;
+  background:white;
+  color:#7b2cbf;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:3rem;
-  text-decoration:none;
-  color:white;
-  box-shadow:0 30px 60px rgba(0,0,0,0.4);
-  transition:0.4s;
-}
-.rose-btn:hover{
-  transform:scale(1.1) rotate(10deg);
+  font-weight:bold;
+  position:absolute;
+  left:128px;
+  cursor:grab;
+  transition:.25s;
 }
 
-/* ---------- Cards ---------- */
-.card{
-  background:rgba(255,255,255,0.12);
-  padding:22px;
-  margin:15px 0;
-  border-radius:18px;
-  backdrop-filter:blur(10px);
-  box-shadow:0 25px 50px rgba(0,0,0,0.35);
-  animation:fadeUp 1s ease;
+/* shake */
+.shake{animation:shake .35s;}
+@keyframes shake{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-7px);}
+  50%{transform:translateX(7px);}
+  75%{transform:translateX(-7px);}
+  100%{transform:translateX(0);}
 }
 
-/* ---------- Quiz ---------- */
-.quiz-btn{
-  padding:14px 32px;
-  border-radius:30px;
-  border:none;
-  margin:10px;
-  cursor:pointer;
-  font-size:1rem;
-  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-  color:#7b1e3a;
-  font-weight:600;
-}
-
-/* ---------- Falling Roses ---------- */
-.rose-fall{
+/* hearts */
+.heart{
   position:fixed;
-  top:-40px;
-  font-size:22px;
+  top:-20px;
   pointer-events:none;
   animation:fall linear forwards;
 }
-
-footer{
-  padding:90px 20px;
-  text-align:center;
-  font-style:italic;
-  opacity:0.9;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
 @keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-    opacity:0;
-  }
+  to{transform:translateY(110vh); opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= SECTION 1 ================= -->
-<section id="start">
-  <h1>Happy Rose Day<br>Zeenatt Firdosh 🌹</h1>
-  <p>Ek chhota sa surprise, sirf tumhare liye…</p>
-
-  <a href="#letter" class="rose-btn" onclick="createRoses()">🌹</a>
-  <p>(Rose ko touch karo)</p>
+<!-- 1 -->
+<section id="s1">
+  <h1>Mujhe tumse kuch important poochna hai ❤️</h1>
+  <a class="next" href="#s2">Ready?</a>
 </section>
 
-<!-- ================= SECTION 2 ================= -->
-<section id="letter">
-  <h2>💌 A Letter For You</h2>
+<!-- 2 -->
+<section id="s2">
+  <div class="card">Main mazaak nahi kar raha</div>
+  <div class="card">Main serious hoon</div>
+  <div class="card">Thoda nervous bhi hoon 😅</div>
+  <a class="next" href="#s3">Aage sunogi?</a>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="card">Tum meri comfort ho</div>
+  <div class="card">Tum meri safe place ho</div>
+  <div class="card">Tum meri best habit ho 💖</div>
+  <a class="next" href="#s4">Aur…</a>
+</section>
+
+<!-- 4 -->
+<section id="s4">
   <div class="card">
-    <p>
-      Tum meri life ka sirf ek part nahi ho,  
-      tum woh feeling ho jo sab kuch easy bana deti hai.  
-      Jab bhi din thoda heavy lagta hai,  
-      tumhara naam hi kaafi hota hai smile lane ke liye.  
-      Rose Day pe bas itna kehna tha —  
-      tum meri sabse pyaari aadat ho 🌹
-    </p>
+    Agar tum mana kar dogi,<br>
+    main phir bhi tumse <b>pyaar</b> karta rahunga ❤️
   </div>
-  <a href="#special" class="next-btn" onclick="createRoses()">Next 💖</a>
-</section>
-
-<!-- ================= SECTION 3 ================= -->
-<section id="special">
-  <h2>✨ Why You’re Special</h2>
-
-  <div class="card">Tumhari smile bina wajah mood better kar deti hai</div>
-  <div class="card">Tumhara naam hi comfort feel karwa deta hai</div>
-  <div class="card">Tum saath ho toh sab manageable lagta hai</div>
-  <div class="card">Tumhari simplicity hi tumhari beauty hai</div>
-
-  <a href="#thoughts" class="next-btn" onclick="createRoses()">Keep Scrolling 😌</a>
-</section>
-
-<!-- ================= SECTION 4 ================= -->
-<section id="thoughts">
-  <h2>🌙 Jab main tumhe sochta hoon…</h2>
   <div class="card">
-    <p>
-      Main future ka pressure nahi leta,  
-      bas imagine karta hoon ki tum saath ho.  
-      Aur honestly,  
-      utna hi kaafi lagta hai 💗
-    </p>
+    Par haan bol dogi,<br>
+    toh duniya ka sabse lucky insaan ban jaunga ✨
   </div>
-
-  <a href="#quiz" class="next-btn" onclick="createRoses()">One Question 😏</a>
+  <a class="next" href="#s5">Bas thoda aur…</a>
 </section>
 
-<!-- ================= SECTION 5 ================= -->
-<section id="quiz">
-  <h2>😌 Ek Honest Question</h2>
+<!-- 5 -->
+<section id="s5">
+  <div class="card">Tumhare saath future imagine karna easy hai 💫</div>
+  <div class="card">Tum ho toh sab simple lagta hai 🌹</div>
+  <a class="next" href="#s6">Ab pooch leta hoon…</a>
+</section>
 
+<!-- 6 -->
+<section id="s6">
+  <h1>Will you be mine? ❤️</h1>
+  <a class="next" href="#s7">Slide karke answer do…</a>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <h2>⬅️ No &nbsp;&nbsp;&nbsp; Yes ➡️</h2>
+
+  <div class="slider">
+    <span class="label no">No</span>
+    <span class="label yes">Yes</span>
+    <div class="knob" id="knob">❤</div>
+  </div>
+
+  <p id="convince" style="margin-top:18px; min-height:30px;"></p>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <h1>I knew it 😌💖</h1>
+  <div class="card">Thank you for choosing me ✨</div>
+  <a class="next" href="#s9">Last one…</a>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <h2>❤️ Forever</h2>
   <div class="card">
-    <p>
-      Agar main tumse poochhun —  
-      <strong>kya tum meri life ka sabse cute surprise ho?</strong>
-    </p>
+    Ab officially…<br>
+    tum meri ho.<br>
+    Aur main tumhara 💞
   </div>
-
-  <button class="quiz-btn" onclick="answer()">Yes 💖</button>
-  <button class="quiz-btn" onclick="answer()">Bilkul Haan 😁</button>
-
-  <div class="card" id="result" style="display:none;">
-    Mujhe pata tha 😏  
-    tumhare paas “No” ka option ho hi nahi sakta 💕
-  </div>
-
-  <a href="#end" class="next-btn" onclick="createRoses()">Last 🌹</a>
+  <p style="margin-top:20px;font-style:italic;">
+    — From your Nonsense
+  </p>
 </section>
 
-<!-- ================= SECTION 6 ================= -->
-<section id="end">
-  <h2>🌹 Always You</h2>
-  <div class="card">
-    <p>
-      Rose Day ho ya normal din,  
-      tum mere liye hamesha special rahogi.  
-      Bas itna yaad rakhna 💖
-    </p>
-  </div>
-</section>
-
-<footer>
-  — From your Nonsense 💗
-</footer>
-
-<!-- ================= JAVASCRIPT ================= -->
 <script>
-function createRoses(){
-  for(let i=0;i<15;i++){
-    const rose=document.createElement("div");
-    rose.className="rose-fall";
-    rose.innerText="🌹";
-    rose.style.left=Math.random()*100+"vw";
-    rose.style.animationDuration=3+Math.random()*4+"s";
-    document.body.appendChild(rose);
-    setTimeout(()=>rose.remove(),7000);
+const knob=document.getElementById("knob");
+let startX=0;
+
+const lines=[
+"Arey sach me? 🥺",
+"Ek baar dil se soch lo ❤️",
+"Please aisa mat karo 😭",
+"Mujhe sach me tum chahiye 💖",
+"Itna torture mat do 😩",
+"Main wait kar lunga par No mat bolo 🥹",
+"Tumhare bina kaise rahunga 😭",
+"Last chance 😔",
+"Thoda sa pyaar dikha do ❤️",
+"Mat jao us taraf 😩",
+"Mujhe umeed hai tum Yes karogi 💞",
+"Please meri taraf dekho 🥺",
+"Heart break ho jayega 💔",
+"Again try karo ❤️",
+"Mujhe disappoint mat karo 😭"
+];
+
+knob.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+knob.addEventListener("touchend",e=>{
+  let endX=e.changedTouches[0].clientX;
+  handle(endX-startX);
+});
+
+knob.addEventListener("mousedown",e=>startX=e.clientX);
+knob.addEventListener("mouseup",e=>{
+  handle(e.clientX-startX);
+});
+
+function handle(diff){
+  const msg=document.getElementById("convince");
+
+  if(diff>40){ // YES
+    rain();
+    location.href="#s8";
+  }
+  else if(diff<-40){ // NO
+    knob.classList.add("shake");
+    setTimeout(()=>knob.classList.remove("shake"),350);
+    msg.innerText=lines[Math.floor(Math.random()*lines.length)];
   }
 }
 
-function answer(){
-  document.getElementById("result").style.display="block";
-  createRoses();
+function rain(){
+  for(let i=0;i<25;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerText="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=3+Math.random()*4+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),7000);
+  }
 }
 </script>
 
